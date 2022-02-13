@@ -1,0 +1,500 @@
+from random import randint as r
+def c():
+    print("\n"*50)
+nums = ["1","2","3","4"]
+PT = []
+PH = ["9","9","9","9"]
+K = 0
+c()
+print("[Your team]")
+print("[1] [Custom team]")
+print("[2] [Random team]")
+x = int(input(">"))
+if x == 1:
+    while len(PT) < 4:
+        c()
+        print("Your team:")
+        print(PT)
+        print(" ")
+        print("[1] [Add Knight]")
+        print("[2] [Add Hunter]")
+        print("[3] [Add Priest]")
+        print("[4] [Add Warlock]")
+        x = int(input(">"))
+        if x == 1:
+            PT.append("K")
+        elif x == 2:
+            PT.append("H")
+        elif x == 3:
+            PT.append("P")
+        elif x == 4:
+            PT.append("W")
+else:
+    while len(PT) < 4:
+        x = r(1,4)
+        if x == 1:
+            PT.append("K")
+        elif x == 2:
+            PT.append("H")
+        elif x == 3:
+            PT.append("P")
+        elif x == 4:
+            PT.append("W")
+while PT.count("X") < 4:
+    PC = ["0","0","0","0"]
+    PS = ["-","-","-","-"]
+    EH = ["9","9","9","9"]
+    EA = ["!","!","!","!"]
+    EC = ["0","0","0","0"]
+    ES = ["-","-","-","-"]
+    ET = []
+    c() 
+    print("[Enemy team]")
+    print("[1] [Custom team]")
+    print("[2] [Random team]")
+    x = int(input(">"))
+    if x == 1:
+        while len(ET) < 4:
+            c()
+            print("Enemy team:")
+            print(ET)
+            print(" ")
+            print("[1] [Add Knight]")
+            print("[2] [Add Hunter]")
+            print("[3] [Add Priest]")
+            print("[4] [Add Warlock]")
+            x = int(input(">"))
+            if x == 1:
+                ET.append("K")
+            elif x == 2:
+                ET.append("H")
+            elif x == 3:
+                ET.append("P")
+            elif x == 4:
+                ET.append("W")
+    else:
+        while len(ET) < 4:
+            x = r(1,4)
+            if x == 1:
+                ET.append("K")
+            elif x == 2:
+                ET.append("H")
+            elif x == 3:
+                ET.append("P")
+            elif x == 4:
+                ET.append("W")
+    PA = ["-","-","-","-"]
+    if PT[0] != "X":
+        PA[0] = "!"
+    if PT[1] != "X":
+        PA[1] = "!"
+    if PT[2] != "X":
+        PA[2] = "!"
+    if PT[3] != "X":
+        PA[3] = "!"
+    Turn = "P"
+    while PT.count("X") < 4 and ET.count("X") < 4:
+        if Turn == "P":
+            c()
+            print("Kill count: "+str(K))
+            print(" ")
+            print("Enemy team")
+            print(nums)
+            print(str(ET)+" Team")
+            print(str(EH)+" HP")
+            print(str(ES)+" Shield")
+            print(str(EC)+" Charge")
+            print(str(EA)+" Turns")
+            print(" ")
+            print("Player team")
+            print(nums)
+            print(str(PT)+" Team")
+            print(str(PH)+" HP")
+            print(str(PS)+" Shield")
+            print(str(PC)+" Charge")
+            print(str(PA)+" Turns")
+            print(" ")
+            U = int(input("[Select Hero]>"))-1
+            while PA[U] == "-":
+                U = r(0,3)
+            PA[U] = "-"
+            c()
+            print("Kill count: "+str(K))
+            print(" ")
+            print("Enemy team")
+            print(nums)
+            print(str(ET)+" Team")
+            print(str(EH)+" HP")
+            print(str(ES)+" Shield")
+            print(str(EC)+" Charge")
+            print(str(EA)+" Turns")
+            print(" ")
+            print("Player team")
+            print(nums)
+            print(str(PT)+" Team")
+            print(str(PH)+" HP")
+            print(str(PS)+" Shield")
+            print(str(PC)+" Charge")
+            print(str(PA)+" Turns")
+            print(" ")
+            print("Skills")
+            if PT[U] == "K":
+                print("[1] [Smite]   (Deal 3)")
+                print("[2] [Inspire] (Heal 2 to ally and self)")
+                print("[3] [Shield]  (Give ally shield)")
+            elif PT[U] == "H":
+                print("[1] [Slash] (Deal 2)")
+                if int(PC[U]) < 3:
+                    print("[2] [Pull]  (Increase Shoot damage)")
+                if int(PC[U]) > 0:
+                    print("[3] [Shoot] (Deal "+str(int(PC[U])*3)+")")
+            elif PT[U] == "P":
+                print("[1] [Flash] (Deal 2)")
+                print("[2] [Heal]  (Heal 3)")
+
+                print("[3] [Rally] (Heal team for 1)")
+            elif PT[U] == "W":
+                print("[1] [Drain]    (Deal 2 Heal 2 Gain 1 Charge)")
+                if int(PC[U]) > 0:
+                    print("[2] [Twisting] (Deal "+PC[U]+" to team)")
+                if int(PH[U]) > 3:
+                    print("[3] [Demonic]  (Deal 6 Lose 3)")
+            S = int(input(">"))
+            if PT[U] == "H" and S == 2 or PT[U] == "P" and S == 3 or PT[U] == "W" and S == 2:
+                print(" ")
+            else:
+                c()
+                print("Kill count: "+str(K))
+                print(" ")
+                print("Enemy team")
+                print(nums)
+                print(str(ET)+" Team")
+                print(str(EH)+" HP")
+                print(str(ES)+" Shield")
+                print(str(EC)+" Charge")
+                print(str(EA)+" Turns")
+                print(" ")
+                print("Player team")
+                print(nums)
+                print(str(PT)+" Team")
+                print(str(PH)+" HP")
+                print(str(PS)+" Shield")
+                print(str(PC)+" Charge")
+                print(str(PA)+" Turns")
+                print(" ")
+                T = int(input("[Target]>"))-1
+            if PT[U] == "K":
+                if S == 1:
+                    if ES[T] == "S":
+                        ES[T] = "-"
+                    else:
+                        EH[T] = str(int(EH[T])-3)
+                elif S == 2:
+                    PH[U] = str(int(PH[U])+2)
+                    PH[T] = str(int(PH[T])+2)
+                elif S == 3:
+                    PS[T] = "S"
+            elif PT[U] == "H":
+                if S == 1:
+                    if ES[T] == "S":
+                        ES[T] = "-"
+                    else:
+                        EH[T] = str(int(EH[T])-2)
+                elif S == 2:
+                    PC[U] = str(int(PC[U])+1)
+                elif S == 3:
+                    if ES[T] == "S":
+                        ES[T] = "-"
+                    else:
+                        EH[T] = str(int(EH[T])-int(PC[U])*3)
+                    PC[U] = "0"
+            elif PT[U] == "P":
+                if S == 1:
+                    if ES[T] == "S":
+                        ES[T] = "-"
+                    else:
+                        EH[T] = str(int(EH[T])-2)
+                elif S == 2:
+                    PH[T] = str(int(PH[T])+3)
+                elif S == 3:
+                    if PT[0] != "X":
+                        PH[0] = str(int(PH[0])+1)
+                    if PT[1] != "X":
+                        PH[1] = str(int(PH[1])+1)
+                    if PT[2] != "X":
+                        PH[2] = str(int(PH[2])+1)
+                    if PT[3] != "X":
+                        PH[3] = str(int(PH[3])+1)
+            elif PT[U] == "W":
+                if S == 1:
+                    if ES[T] == "S":
+                        ES[T] = "-"
+                    else:
+                        EH[T] = str(int(EH[T])-2)
+                        PH[U] = str(int(PH[U])+2)
+                        PC[U] = str(int(PC[U])+1)
+                        if int(PC[U]) > 9:
+                            PC[U] = "9"
+                elif S == 2:
+                    if ES[0] == "S":
+                        ES[0] = "-"
+                    else:
+                        EH[0] = str(int(EH[0])-int(PC[U]))
+                    if ES[1] == "S":
+                        ES[1] = "-"
+                    else:
+                        EH[1] = str(int(EH[1])-int(PC[U]))
+                    if ES[2] == "S":
+                        ES[2] = "-"
+                    else:
+                        EH[2] = str(int(EH[2])-int(PC[U]))
+                    if ES[3] == "S":
+                        ES[3] = "-"
+                    else:
+                        EH[3] = str(int(EH[3])-int(PC[U]))
+                    PC[U] = "0"
+                elif S == 3:
+                    if ES[T] == "S":
+                        ES[T] = "-"
+                    else:
+                        EH[T] = str(int(EH[T])-6)
+                        PH[U] = str(int(PH[U])-3)
+
+            if int(PH[0]) > 9:
+                PH[0] = "9"
+            if int(PH[1]) > 9:
+                PH[1] = "9"
+            if int(PH[2]) > 9:
+                PH[2] = "9"
+            if int(PH[3]) > 9:
+                PH[3] = "9"
+            if int(EH[0]) < 1:
+                if ET[0] != "X":
+                    K += 1
+                ET[0] = "X"
+                EH[0] = "0"
+                EC[0] = "0"
+                EA[0] = "-"
+            if int(EH[1]) < 1:
+                if ET[1] != "X":
+                    K += 1
+                ET[1] = "X"
+                EH[1] = "0"
+                EC[1] = "0"
+                EA[1] = "-"
+            if int(EH[2]) < 1:
+                if ET[2] != "X":
+                    K += 1
+                ET[2] = "X"
+                EH[2] = "0"
+                EC[2] = "0"
+                EA[2] = "-"
+            if int(EH[3]) < 1:
+                if ET[3] != "X":
+                    K += 1
+                ET[3] = "X"
+                EH[3] = "0"
+                EC[3] = "0"
+                EA[3] = "-"
+        else:
+            U = r(0,3)
+            while EA[U] == "-":
+                U = r(0,3)
+            EA[U] = "-"
+
+            sl = []
+            if ET[U] == "K":
+                sl.append(1)
+                if (ET.count("X") + ES.count("S")) < 4:
+                    sl.append(3)
+                if int(EH[U]) < 8 and EH.count("9") + EH.count("8") + EH.count("0") < 3:
+                    sl.append(2)
+            elif ET[U] == "H":
+                sl.append(1)
+                if int(EC[U]) < 3:
+                    sl.append(2)
+                if int(EC[U]) > 1:
+                    sl.append(3)
+            elif ET[U] == "P":
+                sl.append(1)
+                if EH.count("9") + EH.count("0") < 2:
+                    sl.append(3)
+                if EH.count("1") + EH.count("2") + EH.count("3") + EH.count("4") + EH.count("5") + EH.count("6") > 0:
+                    sl.append(2)
+            elif ET[U] == "W":
+                sl.append(1)
+                if int(EH[U]) > 3:
+                    sl.append(3)
+                if int(EC[U]) > 0:
+                    sl.append(2)
+            S = r(0,len(sl)-1)
+            S = sl[S]
+            if ET[U] == "K" and S == 1 or ET[U] == "H" and S == 1 or ET[U] == "H" and S == 3 or ET[U] == "P" and S == 1 or ET[U] == "W" and S == 3 or ET[U] == "W" and S == 1:
+                T = r(0,3)
+                while PT[T] == "X":
+                    T = r(0,3)
+            elif ET[U] == "K" and S == 3:
+                T = r(0,3)
+                while ES[T] == "S" or ET[T] == "X":
+                    T = r(0,3)
+            elif ET[U] == "K" and S == 2:
+                T = r(0,3)
+                while T == U or EH[T] == "9" or EH[T] == "8" or EH[T] == "0" :
+                    T = r(0,3)
+            elif ET[U] == "P" and S == 2:
+                T = r(0,3)
+                while EH[T] == "9" or EH[T] == "8" or EH[T] == "7" or EH[T] == "0" :
+                    T = r(0,3)
+            if ET[U] == "K":
+                if S == 1:
+                    if PS[T] == "S":
+                        PS[T] = "-"
+                    else:
+                        PH[T] = str(int(PH[T])-3)
+                elif S == 2:
+                    EH[U] = str(int(EH[U])+2)
+                    EH[T] = str(int(EH[T])+2)
+                elif S == 3:
+                    ES[T] = "S"
+            elif ET[U] == "H":
+                if S == 1:
+                    if PS[T] == "S":
+                        PS[T] = "-"
+                    else:
+                        PH[T] = str(int(PH[T])-2)
+                elif S == 2:
+                    EC[U] = str(int(EC[U])+1)
+                elif S == 3:
+                    if PS[T] == "S":
+                        PS[T] = "-"
+                    else:
+                        PH[T] = str(int(PH[T])-int(EC[U])*3)
+                    EC[U] = "0"
+            elif ET[U] == "P":
+                if S == 1:
+                    if PS[T] == "S":
+                        PS[T] = "-"
+                    else:
+                        PH[T] = str(int(PH[T])-2)
+                elif S == 2:
+                    EH[T] = str(int(EH[T])+3)
+                elif S == 3:
+                    if ET[0] != "X":
+                        EH[0] = str(int(EH[0])+1)
+                    if ET[1] != "X":
+                        EH[1] = str(int(EH[1])+1)
+                    if ET[2] != "X":
+                        EH[2] = str(int(EH[2])+1)
+                    if ET[3] != "X":
+                        EH[3] = str(int(EH[3])+1)
+            elif ET[U] == "W":
+                if S == 1:
+                    if PS[T] == "S":
+                        PS[T] = "-"
+                    else:
+                        PH[T] = str(int(PH[T])-2)
+                        EH[U] = str(int(EH[U])+2)
+                        EC[U] = str(int(EC[U])+1)
+                        if int(EC[U]) > 9:
+                            EC[U] = "9"
+                elif S == 2:
+                    if PS[0] == "S":
+                        PS[0] = "-"
+                    else:
+                        PH[0] = str(int(PH[0])-int(EC[U]))
+                    if PS[1] == "S":
+                        PS[1] = "-"
+                    else:
+                        PH[1] = str(int(PH[1])-int(EC[U]))
+                    if PS[2] == "S":
+                        PS[2] = "-"
+                    else:
+                        PH[2] = str(int(PH[2])-int(EC[U]))
+                    if PS[3] == "S":
+                        PS[3] = "-"
+                    else:
+                        PH[3] = str(int(PH[3])-int(EC[U]))
+                    EC[U] = "0"
+                elif S == 3:
+                    if PS[T] == "S":
+                        PS[T] = "-"
+                    else:
+                        PH[T] = str(int(PH[T])-6)
+                        EH[U] = str(int(EH[U])-3)
+            if int(EH[0]) > 9:
+                EH[0] = "9"
+            if int(EH[1]) > 9:
+                EH[1] = "9"
+            if int(EH[2]) > 9:
+                EH[2] = "9"
+            if int(EH[3]) > 9:
+                EH[3] = "9"
+            if int(PH[0]) < 1:
+                PT[0] = "X"
+                PH[0] = "0"
+                PC[0] = "0"
+                PA[0] = "-"
+            if int(PH[1]) < 1:
+                PT[1] = "X"
+                PH[1] = "0"
+                PC[1] = "0"
+                PA[1] = "-"
+            if int(PH[2]) < 1:
+                PT[2] = "X"
+                PH[2] = "0"
+                PC[2] = "0"
+                PA[2] = "-"
+            if int(PH[3]) < 1:
+                PT[3] = "X"
+                PH[3] = "0"
+                PC[3] = "0"
+                PA[3] = "-"
+        if Turn == "P":
+            if EA.count("!") > 0:
+                Turn = "E"
+            elif EA.count("!") == 0 and PA.count("!") > 0:
+                Turn = "P"
+            elif EA.count("!") == 0 and PA.count("!") == 0:
+                if PT[0] != "X":
+                    PA[0] = "!"
+                if PT[1] != "X":
+                    PA[1] = "!"
+                if PT[2] != "X":
+                    PA[2] = "!"
+                if PT[3] != "X":
+                    PA[3] = "!"
+                if ET[0] != "X":
+                    EA[0] = "!"
+                if ET[1] != "X":
+                    EA[1] = "!"
+                if ET[2] != "X":
+                    EA[2] = "!"
+                if ET[3] != "X":
+                    EA[3] = "!"
+                Turn = "E"
+        elif Turn == "E":
+            if PA.count("!") > 0:
+                Turn = "P"
+            elif PA.count("!") == 0 and EA.count("!") > 0:
+                Turn = "E"
+            elif EA.count("!") == 0 and PA.count("!") == 0:
+                if PT[0] != "X":
+                    PA[0] = "!"
+                if PT[1] != "X":
+                    PA[1] = "!"
+                if PT[2] != "X":
+                    PA[2] = "!"
+                if PT[3] != "X":
+                    PA[3] = "!"
+                if ET[0] != "X":
+                    EA[0] = "!"
+                if ET[1] != "X":
+                    EA[1] = "!"
+                if ET[2] != "X":
+                    EA[2] = "!"
+                if ET[3] != "X":
+                    EA[3] = "!"
+                Turn = "P"
+c()
+print("Game over")
+print("Final kill count: "+str(K))
